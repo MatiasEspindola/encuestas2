@@ -62,6 +62,7 @@ public class RespuestaController {
         model.put("encuesta", encuesta);
 
         List<Pregunta> preguntas = pregServ.findByEncuesta(encuesta);
+        
 
         model.put("titulo", encuesta.getTitulo());
         

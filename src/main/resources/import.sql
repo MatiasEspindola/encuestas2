@@ -22,8 +22,8 @@ INSERT INTO preguntas (nro, pregunta, fk_id_enc) VALUES (2, 'Condicion actual en
 INSERT INTO respuestas (fk_id_pre) VALUES (3);
 INSERT INTO respuestas (fk_id_pre) VALUES (4);
 
-INSERT INTO opciones (nro, opcion, fk_id_res) VALUES (1, 'Visitante-Turista', 1);
-INSERT INTO opciones (nro, opcion, fk_id_res) VALUES (1, 'Vivo aqui', 2);
+INSERT INTO respuestas (respuesta, fk_id_pre) VALUES ('Visitante-Turista', 3);
+INSERT INTO respuestas (respuesta, fk_id_pre) VALUES ('Vivo aqui', 3);
 
 INSERT INTO opciones (nro, opcion, fk_id_pre) VALUES (1, 'Muy Bueno', 2);
 INSERT INTO opciones (nro, opcion, fk_id_pre) VALUES (1, 'Bueno', 2);
