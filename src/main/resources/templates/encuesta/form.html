@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body class="grey lighten-3">
+
+	<!--Navbar-->
+	<header th:replace="layout/layout :: header"></header>
+
+	<!--Main layout-->
+	<main class="pt-5" style="margin-left: -10.0em;"> <!--Grid row-->
+	<div class="container-fluid mt-5">
+		<div class="row wow fadeIn">
+			<!--Grid column-->
+			<div class="col-md-12 mb-4">
+				<!--Card-->
+				<div class="card">
+					<!--Card content-->
+					<div class="card-body">
+						<h4 th:text="${title}"></h4>
+						<form th:action="@{/encuesta/form}" th:object="${encuesta}" method="post">
+							<!-- Material inputs -->
+
+							<div class="md-form">
+								<input type="text" id="titulo" th:field="*{titulo}" required class="form-control" th:errorClass="'form-control is-invalid'">
+								<div class="invalid-feedback" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></div>
+								<label for="titulo">Título</label>
+							</div>
+							<div class="md-form">
+								<input type="text" id="presen" th:field="*{presentacion}" required class="form-control" th:errorClass="'form-control is-invalid'">
+								<div class="invalid-feedback" th:if="${#fields.hasErrors('presentacion')}" th:errors="*{presentacion}"></div>
+								<label for="presen">Texto Presentación</label>
+							</div>
+							<div class="md-form">
+								<label for="fecha-inicio">Fecha de Inicio</label>
+								<br />
+								<br />
+								<input type="date" id="fecha-inicio" th:field="*{fechaInicio}" required class="form-control" th:errorClass="'form-control is-invalid'" />
+								<div class="invalid-feedback" th:if="${#fields.hasErrors('fechaInicio')}" th:errors="*{fechaInicio}"></div>
+							</div>
+							<div class="md-form">
+								<label for="fecha-caducidad">Fecha de Caducidad</label>
+								<br />
+								<br />
+								<input type="date" id="fecha-caducidad" th:field="*{fechaCaducidad}" required class="form-control" th:errorClass="'form-control is-invalid'" />
+								<div class="invalid-feedback" th:if="${#fields.hasErrors('fechaCaducidad')}" th:errors="*{fechaCaducidad}"></div>
+							</div>
+							<div class="col-4 md-form ml-3">
+								<label for="loc" style="margin-left: -0.8em;">Localidad</label>
+								<select id="loc" style="margin-left: 8.0em; width: 350px;" class="browser-default custom-select" th:field="*{localidad}">
+									<option th:each="l : ${localidades}" th:value="${l.id}" th:text="${l}"></option>
+								</select>
+							</div>
+							<div class="form-group row">
+								<label for="file" class="col-sm-2 col-form-label">Imagen de Portada: </label>
+								<div class="col-sm-6">
+									<input type="file" name="file" class="form-control mb-2" onchange="previewImage(this,[256],4);">
+
+									<div class="imagePreview"></div>
+								</div>
+							</div>
+
+							<input type="submit" value="Guardar" class="btn btn-primary btn-sm float-right mt-4 mb-4" />
+							<a th:href="@{/encuesta/list}" th:text="Cancelar" class="btn btn-secondary float-right mt-4 p-2 mb-4"></a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</main>
+	<!-- MAIN layout -->
+
+	<!-- FOOTER -->
+	<div th:replace="layout/layout :: footer"></div>
+	<script th:src="@{/js/html5.image.preview.js}"></script>
+</body>
+
+</html>

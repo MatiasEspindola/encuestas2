@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+<meta charset="UTF-8">
+<title th:text="#{text.system.title}"></title>
+
+<!-- Bootstrap core CSS -->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+<!-- SB-Admin -->
+<link th:href="@{/css/sb-admin.min.css}" rel="stylesheet">
+
+<!-- Material Design Bootstrap -->
+<link th:href="@{/css/mdb.min.css}" rel="stylesheet">
+<!-- Your custom styles (optional) -->
+
+<link th:href="@{/css/style.min.css}" rel="stylesheet">
+<link th:href="@{/css/estilo-tarefas.css}" rel="stylesheet">
+<link th:href="@{/css/sweetalert2.min.css}" rel="stylesheet">
+
+<link rel="stylesheet" th:href="@{/css/bootstrap-notify.css}" />
+
+<link th:href="@{/css/jquery-ui.min.css}" rel="stylesheet">
+<link th:href="@{/css/bootstrap-slider.min.css}" rel="stylesheet">
+
+<!-- Font Awesome 5 -->
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+	crossorigin="anonymous">
+
+
+<!-- Font Awesome 4 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link th:href="@{/css/ganbari.css}" rel="stylesheet">
+
+
+<link rel="icon" type="image/png" th:href="@{/img/iterart.png}" />
+
+</head>
+<body>
+	<header th:fragment="header">
+
+		<!-- Navbar -->
+		<nav class="navbar fixed-top navbar-expand-lg barra-superior" style="margin-left: -5.0em;">
+			<div class="container-fluid">
+
+				<!-- Brand -->
+				<a class="navbar-brand waves-effect" th:href="@{/home}"> <strong
+					class="white-text"> <span th:text="#{text.system.title}" ></span>
+				</strong>
+				</a>
+
+
+
+				<!-- Links -->
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+					<!-- Left -->
+					<ul class="navbar-nav mr-auto">
+
+					</ul>
+
+					<!-- Right -->
+					<ul class="navbar-nav nav-flex-icons">
+						<li class="nav-item"><a th:href="@{/}"
+							class="nav-link waves-effect" target="_blank"> <i
+								class="fab fa-facebook text-white"></i>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/}"
+							class="nav-link waves-effect" target="_blank"> <i
+								class="fab fa-twitter text-white"></i>
+						</a></li>
+						<!-- Dropdown -->
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle nav-link border border-light rounded waves-effect text-white"
+							id="navbarDropdownMenuLink" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> <i
+								class="fa fa-user mr-3"></i> <span sec:authentication="name"></span>
+								<span sec:authority="rol"></span>
+						</a>
+							<div class="dropdown-menu dropdown-primary"
+								aria-labelledby="navbarDropdownMenuLink">
+
+								<form id="logoutForm" th:action="@{/logout}" method="post">
+									<a class="dropdown-item" href="#"
+										onclick="document.getElementById('logoutForm').submit();">
+										<i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp;Salir
+									</a>
+								</form>
+							</div></li>
+					</ul>
+
+				</div>
+			</div>
+		</nav>
+		<!-- Navbar -->
+
+		<div
+			style="margin-top: 120px; margin-bottom: -120px; margin-left: 270px; margin-right: 50px;">
+			<!-- Messages -->
+			<div class="alert alert-success" role="alert"
+				th:if="${success != null}" th:text="${success}"></div>
+
+			<div class="alert alert-danger" role="alert" th:if="${error != null}"
+				th:text="${error}"></div>
+
+			<div class="alert alert-warning" role="alert"
+				th:if="${warning != null}" th:text="${warning}"></div>
+
+			<div class="alert alert-info" role="alert" th:if="${info != null}"
+				th:text="${info}"></div>
+			<!-- Messages -->
+
+		</div>
+
+		<!-- Sidebar -->
+		<div class="sidebar-fixed position-fixed toggled texto-menu"
+			style="width: 80px; margin-right: -5.0em; padding-right: -2.0em; font-size: 0.7em; text-align: center; min-width: 80px;">
+
+			<a th:href="@{/home}" class="logo-wrapper waves-effect"> <img
+				th:src="@{/img/iterart.png}" alt="Iterart" height="40"
+				width="40" style="margin: -2.5em;">
+			</a>
+
+			<div class="list-group list-group-flush" style="margin-left: -0.7em;">
+				<a th:href="@{/home}" class="list-group-item waves-effect"
+					th:classAppend="${act} == 'home' ? 'home-color text-white'"> <i
+					class="fa fa-pie-chart"></i> </br> <span th:text="#{text.sidebar.home}"></span>
+				</a> <a th:href="@{/cuentas/list}"
+					class="list-group-item list-group-item-action waves-effect"
+					th:classAppend="${act} == 'bills' ? 'states-active'"> <i
+					class="fa fa-dollar-sign"></i> </br> <span
+					th:text="#{text.sidebar.param}"></span>
+				</a> <a th:href="@{/params/view}"
+					class="list-group-item list-group-item-action waves-effect"
+					th:classAppend="${act} == 'pars' ? 'params-color text-white'">
+					<i class="fas fa-percent"></i> </br> <span th:text="'Parámetros'"></span>
+				</a> <a th:href="@{/prestamos/list}"
+					class="list-group-item list-group-item-action waves-effect"
+					th:classAppend="${act} == 'loan' ? 'params-color text-white'">
+					<i class="fa fa-money"></i> </br> <span th:text="#{text.sidebar.loan}"></span>
+				</a> <a class="nav-link collapsed" href="#submenu1"
+					data-toggle="collapse" data-target="#submenu1"
+					th:classAppend="${act} == 'econ' ? 'economic-color text-white'">
+					<i class="fa fa-money"></i> </br> <span
+					th:text="#{text.sidebar.results}"></span>
+				</a>
+				<div class="collapse" id="submenu1" aria-expanded="false">
+					<ul class="flex-column nav">
+						<li class="nav-item"><a th:href="@{/economico/view/0}"
+							class="list-group-item list-group-item-action waves-effect"
+							th:classAppend="${act} == 'econ' ? 'economic-color text-white'">
+								<span th:text="#{text.sidebar.economic}"></span>
+						</a> <a th:href="@{/cashflow/view/0}"
+							class="list-group-item list-group-item-action waves-effect"
+							th:classAppend="${act} == 'cash' ? 'cashflow-color text-white'">
+								<span th:text="#{text.sidebar.cashflow}"></span>
+						</a> <a th:href="@{/patrimonial/view/0}"
+							class="list-group-item list-group-item-action waves-effect"
+							th:classAppend="${act} == 'patr' ? 'patrimony-color text-white'">
+								<span th:text="#{text.sidebar.patrimony}"></span>
+						</a></li>
+					</ul>
+				</div>
+				<a href="#"
+					class="list-group-item list-group-item-action waves-effect disabled tachar">
+					<i class="fas fa-chart-line"></i> </br> <span
+					th:text="#{text.sidebar.detours}"></span>
+				</a> <a th:href="@{/value/view}"
+					class="list-group-item list-group-item-action waves-effect"
+					th:classAppend="${act} == 'val' ? 'value-color text-white'"> <i
+					class="fa fa-money"></i> </br> <span th:text="#{text.sidebar.value}"></span>
+				</a> <a th:href="@{/units/list}"
+					class="list-group-item list-group-item-action waves-effect"
+					th:classAppend="${act} == 'units' ? 'business-color text-white'">
+					<i class="fa fa-money"></i> </br> <span
+					th:text="#{text.sidebar.business}"></span>
+				</a> <a th:href="@{/config/form}"
+					class="list-group-item list-group-item-action waves-effect"
+					th:classAppend="${act} == 'config' ? 'config-color text-white'">
+					<i class="fa fa-gear"></i> </br> <span th:text="#{text.sidebar.config}"></span>
+				</a>
+
+			</div>
+
+		</div>
+		<!-- Sidebar -->
+
+	</header>
+
+	<div th:fragment="footer">
+
+
+		<!--Call to action-->
+		<!-- SCRIPTS -->
+		<!-- JQuery -->
+		<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+		<!-- Bootstrap tooltips -->
+		<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+		<!-- Bootstrap core JavaScript -->
+		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+		<!-- MDB core JavaScript -->
+		<script type="text/javascript" th:src="@{/js/mdb.min.js}"></script>
+
+		<script th:src="@{/js/bootstrap-notify.js}"></script>
+		<script th:src="@{/js/sweetalert2.min.js}"></script>
+
+		<script type="text/javascript" th:src="@{/js/jquery-ui.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap-slider.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
+
+
+		<!-- Initializations -->
+		<script type="text/javascript">
+			// Animations initialization
+			new WOW().init();
+		</script>
+		<script>
+			$(function() {
+				$('[data-toggle="tooltip"]').tooltip();
+			})
+		</script>
+
+
+		<script>
+			setInterval('cerrar()', 3000);
+
+			function cerrar() {
+				$(".alert").delay(300).slideUp(50, function() {
+					$(this).hide();
+				});
+			};
+		</script>
+
+
+
+	</div>
+
+</body>
+</html>

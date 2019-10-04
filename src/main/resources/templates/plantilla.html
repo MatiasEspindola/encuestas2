@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body class="grey lighten-3">
+
+	<!--Navbar-->
+	<header th:replace="layout/layout :: header"></header>
+
+	<!--Main layout-->
+	<main class="pt-5" style="margin-left: -10.0em;"> <!--Grid row-->
+	<div class="container-fluid mt-5">
+		<div class="row wow fadeIn">
+			<!--Grid column-->
+			<div class="col-md-12 mb-4">
+				<!--Card-->
+				<div class="card">
+					<!--Card content-->
+					<div class="card-body">
+						<h4 th:text="${title}"></h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</main>
+	<!-- MAIN layout -->
+
+	<!-- FOOTER -->
+	<div th:replace="layout/layout :: footer"></div>
+</body>
+

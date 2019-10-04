@@ -1,0 +1,228 @@
+/* Tela grande */
+/*
+html{
+	font-size: 12px;
+}
+*/
+.main-card{
+	margin-left: -5.0em;
+	width: 150%;
+}
+
+.secondary-card{
+	margin-left: -5.0em;
+	width: 100%;
+}
+
+
+.cuerpo{
+	margin-left: -14.0em;
+}
+
+.pie{
+  position: absolute;
+  bottom: 0px;
+  height: 60px;
+  width: 100%;
+}
+
+.periodo{}
+
+.concepto{}
+
+.categoria{}
+
+.texto-menu{
+	font-size: 13px;
+	padding: 0px;
+}
+
+@media ( min-width : 768px) {
+	.panel-default {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	.alert {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+}
+
+.panel-title {
+	font-weight: normal;
+	color: #37474f;
+}
+
+.navbar-brand {
+	padding-top: 15px;
+}
+
+.blas-link-panel {
+	float: right;
+	padding: 0px;
+	font-weight: normal;
+}
+
+.blas-link {
+	font-weight: bold;
+}
+
+.blas-titulo-panel {
+	float: left;
+	padding-top: 2px;
+}
+
+.tarefa-concluida {
+	text-decoration: line-through;
+	font-color: gray;
+}
+
+.tachar {
+	text-decoration: line-through;
+}
+
+.chip {
+	display: inline-block;
+	padding: 0 25px;
+	height: 65px;
+	width: 80%;
+	font-size: 14px;
+	line-height: 28px;
+	border-radius: 50px;
+	margin-bottom: 0.5em;
+}
+
+.chip0 {
+	display: inline-block;
+	padding: 0 25px;
+	height: 65px;
+	width: 20%;
+	font-size: 16px;
+	line-height: 50px;
+	font-size: 16px;
+	line-height: 50px;
+	border-radius: 50px;
+	margin-bottom: 0.5em;
+}
+
+.chip i {
+	float: left;
+	margin: 0px 0px 0 -24px;
+	height: 65px;
+	width: 65px;
+	border-radius: 50%;
+}
+
+.chip img {
+	float: left;
+	margin: 0 10px 0 -25px;
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+}
+
+.flotante {
+	/*opacity: 0.5;*/
+	width: 85%;
+	position: fixed;
+	z-index: 100;
+}
+
+.contenido {
+	padding-top: 10px;
+	/*font-size: small;*/
+}
+
+.flotante0 {
+	display: scroll;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	width: 20px;
+	height: 75px;
+}
+
+.flotante1 {
+	display: scroll;
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+}
+
+.btn-circle, .btn-circle-3d {
+	border-radius: 50% !important;
+}
+
+.btn-primary.btn-circle {
+	-webkit-box-shadow: 0px 0px 3px 1px #245580;
+	-moz-box-shadow: 0px 0px 3px 1px #245580;
+	box-shadow: 0px 0px 3px 1px #245580;
+}
+
+.btn-info.btn-circle {
+	-webkit-box-shadow: 0px 0px 3px 1px #28a4c9;
+	-moz-box-shadow: 0px 0px 3px 1px #28a4c9;
+	box-shadow: 0px 0px 3px 1px #28a4c9;
+}
+
+.btn-success.btn-circle {
+	-webkit-box-shadow: 0px 0px 3px 1px #3e8f3e;
+	-moz-box-shadow: 0px 0px 3px 1px #3e8f3e;
+	box-shadow: 0px 0px 3px 1px #3e8f3e;
+}
+
+.btn-danger.btn-circle {
+	-webkit-box-shadow: 0px 0px 3px 1px #b92c28;
+	-moz-box-shadow: 0px 0px 3px 1px #b92c28;
+	box-shadow: 0px 0px 3px 1px #b92c28;
+}
+
+.btn-warning.btn-circle {
+	-webkit-box-shadow: 0px 0px 3px 1px #e38d13;
+	-moz-box-shadow: 0px 0px 3px 1px #e38d13;
+	box-shadow: 0px 0px 3px 1px #e38d13;
+}
+
+.btn-default.btn-circle {
+	-webkit-box-shadow: 0px 0px 3px 1px #ccc;
+	-moz-box-shadow: 0px 0px 3px 1px #ccc;
+	box-shadow: 0px 0px 3px 1px #ccc;
+}
+
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button
+	{
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type=number] {
+	-moz-appearance: textfield;
+}
+
+ul#nav {
+	position: absolute;
+	top: 10px;
+	left: 0;
+	z-index: 2;
+}
+
+.outer {
+	position: fixed;
+	left: -1px;
+	top: -2px;
+	z-index: 1;
+	//
+	Posicionar
+	sobre
+	los
+	demas
+	elementos...
+}
+
+.active green{
+    background-color:green;
+}
+
+.active rojo {
+	background-color:green;
+}

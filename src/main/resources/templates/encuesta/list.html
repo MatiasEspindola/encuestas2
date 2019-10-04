@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body class="grey lighten-3">
+
+	<!--Navbar-->
+	<header th:replace="layout/layout :: header"></header>
+
+	<!--Main layout-->
+	<main class="pt-5" style="margin-left: -10.0em;"> <!--Grid row-->
+	<div class="container-fluid mt-5">
+		<div class="row wow fadeIn">
+			<!--Grid column-->
+			<div class="col-md-12 mb-4">
+				<!--Card-->
+				<div class="card">
+					<!--Card content-->
+					<div class="card-body">
+						<h4 th:text="${title}"></h4>
+						<table id="tabla" class="table table-hover table-bordered table-sm">
+							<thead class="blue-gradient-rgba lighten-4">
+								<tr>
+									<th>N°</th>
+
+									<!-- <th>Año Ejercício Fiscal</th>
+									<th>Mes/año</th> -->
+
+									<th>Nro</th>
+									<th>Título</th>
+									<th>Texto Presentación</th>
+									<th>Fecha Inicio</th>
+									<th>Fecha Caducidad</th>
+									<th>Localidad</th>
+									<th>Imagen</th>
+									<th colspan="2"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:if="${#lists.isEmpty(encuestas)}">
+									<td th:text="'No hay registros en esta tabla'" colspan="4"></td>
+								</tr>
+								<tr th:if="${not #lists.isEmpty(encuestas)}" th:each="e : ${encuestas}">
+								
+									<td th:text="${e.id}"></td>
+									<td th:text="${e.titulo}"></td>
+									<td th:text="${e.presentacion}"></td>
+									<td th:text="${#dates.format(e.fechaInicio, 'dd/MM/yyyy')}"></td>
+									<td th:text="${#dates.format(e.fechaCaducidad, 'dd/MM/yyyy')}"></td>
+									<td th:text="${e.portadaImg}"></td>
+									<td th:text="${e.localidad}"></td>
+                                                                            <!-- TE MANDA SIEMPRE EL ID 0 XQ TIENE QUE ELEGIR LA PRIMER PREGUNTA -->
+									<td width="40px;">
+										<a th:href="@{/verEncuesta/} + ${e.id} + '/0'" class="btn btn-link btn-sm pl-4" data-toggle="tooltip" th:title="'Preguntas'">Preguntas
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<a th:href="@{/encuesta/form}" class="btn btn-sm btn-secondary float-right mt-4 mb-4" >Crear Encuesta</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</main>
+	<!-- MAIN layout -->
+
+	<!-- FOOTER -->
+	<div th:replace="layout/layout :: footer"></div>
+</body>
+
+</html>

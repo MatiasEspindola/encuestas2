@@ -1,0 +1,105 @@
+* {
+	margin: 0;
+}
+
+html, body {
+	height: 100%;
+}
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -4em;
+}
+
+.barra-superior {
+	background-color: #003B71;
+}
+
+.pie, .push {
+	position: fixed;
+	left: 0px;
+	bottom: 0px;
+	height: 4em;
+	background-color: transparent;
+}
+
+.home-color {
+	background-color: #003B71;
+	text-shadow: -1px 1px #007974;
+}
+
+.business-color {
+	background-color: #C3ECE8;
+	text-shadow: -1px 1px #007974;
+}
+
+.business-active {
+	background-color: #C3ECE8;
+}
+
+.states-color {
+	background-color: #82DBD5;
+	text-shadow: -1px 1px #007974;
+}
+
+.states-active {
+	background-color: #82DBD5;
+}
+
+.params-color {
+	background-color: #1EC7C0;
+	text-shadow: -1px 1px #007974;
+}
+
+.config-color {
+	background-color: #00B5AE;
+	text-shadow: -1px 1px #007974;
+}
+
+.economic-color {
+	background-color: #00A19B;
+	text-shadow: -1px 1px #007974;
+}
+
+.cashflow-color {
+	background-color: #007974;
+	text-shadow: -1px 1px #007974;
+}
+
+.patrimony-color {
+	background-color: #01504D;
+	text-shadow: -1px 1px #007974;
+}
+
+.value-color {
+	background-color: #002827;
+	text-shadow: -1px 1px #007974;
+}
+
+.detours-color {
+	background-color: #000000;
+}
+
+.table-numbers tr {
+	font-size: 12px;
+	border-bottom: 1px solid #e1e1e1;
+	max-width: 80px;
+}
+
+.table-numbers td {
+	font-size: 10px;
+	border-bottom: 1px solid #e1e1e1;
+	max-width: 80px;
+}
+
+.numerico {
+	max-width: 70px;
+	background-color: yellow;
+	border: 1px solid;
+}
+
+.baldosa {
+	min-height: 8.5em;
+}

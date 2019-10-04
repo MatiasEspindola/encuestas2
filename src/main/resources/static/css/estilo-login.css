@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25/10/2016, 11:13:30
+    Author     : Ander
+*/
+
+
+body{
+    background-image: url(../img/educacion2.jpg);
+    background-size: auto; 
+}
+
+
+
+/*Clases para girar los elementos*/
+
+
+#rotar{
+    transition: 1s ease;
+    -moz-transition: 1s ease; /* Firefox */
+    -webkit-transition: 1s ease; /* Chrome - Safari */
+    -o-transition: 1s ease; /* Opera */
+}
+
+#rotar:hover{
+    transform : rotate(360deg);
+    -moz-transform : rotate(360deg); /* Firefox */
+    -webkit-transform : rotate(360deg); /* Chrome - Safari */
+    -o-transform : rotate(360deg); /* Opera */
+}
+
+.girar {
+    transition: 1s ease;
+    -moz-transition: 1s ease; /* Firefox */
+    -webkit-transition: 1s ease; /* Chrome - Safari */
+    -o-transition: 1s ease; /* Opera */
+}
+.girar:hover {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+
+.transparente{
+    opacity: 0.90;
+    -moz-opacity: 0.90;
+    filter: alpha(opacity=90);
+    -khtml-opacity: 0.90;
+}
+
+.animar{
+    
+  animation-duration: 1s;
+  animation-name: slidein;
+  animation-iteration-count: 1;
+ 
+}
+
+.slidein {
+  -moz-animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -moz-animation-name: slidein;
+  -webkit-animation-name: slidein;
+  animation-name: slidein;
+  -moz-animation-iteration-count: 1;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -moz-animation-direction: alternate;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+}
+    
+@-moz-keyframes slidein {
+  from {
+    margin-left:100%;
+    width:300%
+  }
+      
+  to {
+    margin-left:100%;
+    width:100%;
+  }
+}
+
+@-webkit-keyframes slidein {
+  from {
+    margin-left:100%;
+    width:300%
+  }
+  
+  to {
+   margin-left:0%;
+   width:100%;
+ }
+}
+
+@keyframes slidein {
+  from {
+    margin-left:100%;
+    width:300%
+  }
+  
+  to {
+   margin-left:0%;
+   width:100%;
+ }
+}
