@@ -5,74 +5,216 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html xmlns:th="http://www.thymeleaf.org">
-   <head th:replace="layout/layout :: head"></head>
+    <head th:replace="layout/layout :: head"></head>
     <body>
-        
+
         <!--Navbar-->
-	<header th:replace="layout/layout :: header"></header>
+        <header th:replace="layout/layout :: header"></header>
 
-       
+
         <main class="pt-5" style="margin-left: -10.0em;"> <!--Grid row-->
-	<div class="container-fluid mt-5">
-		<div class="row wow fadeIn">
-			<!--Grid column-->
-			<div class="col-md-12 mb-4">
+            <div class="container-fluid mt-5">
+                <div class="row wow fadeIn">
+                    <!--Grid column-->
+                    <div class="col-md-12 mb-4">
 
 
-        <div class="form-group">
-            <h2 th:text="${titulo}"></h2>
+                        <div class="form-group">
+                            <h2 th:text="${titulo}"></h2>
 
-        </div>
-
-        <div class="md-form">
-
-            <div class="row">
-                <div class="col-2 col-md-2"> 
-                    <a th:href="@{/verEncuesta/} + ${encuesta.id} + '/' + ${idPregunta - 1}" class="btn btn-success" th:if="${activarAnterior}">Anterior</a>
-                </div>
-
-                <div class="col-8 col-md-8">
-
-
-                    <div class="card">
-                        <div class="card-header" th:text="'Pregunta Nº' + ${pregunta.nro}">
-                            
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title" th:text="${pregunta.pregunta}"></h5>
-                            <p>Respuesta: <b th:text="${respuesta}"></b></p>
-                            <br>
-                            <a href="#" class="btn btn-primary" th:if="${respondido == false}">Responder</a> 
-                            <a href="#" class="btn btn-success" th:if="${respondido}">Modificar</a>
+
+                        <div class="md-form">
+
+                            <div class="row">
+                                <div class="col-2 col-md-2"> 
+                                    <a th:href="@{/verEncuesta/} + ${encuesta.id} + '/' + ${idPregunta - 1}" class="btn btn-success" th:if="${activarAnterior}">Anterior</a>
+                                </div>
+
+                                <div class="col-8 col-md-8">
+
+
+                                    <div class="card">
+                                        <div class="card-header" th:text="'Pregunta Nº' + ${pregunta.nro}">
+
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title" th:text="${pregunta.pregunta}"></h5>
+                                            <p th:if="${respondido}">Respuesta: <b th:text="${respuesta}"></b></p>
+                                            <p th:if="${respondido == false}">Respuesta: - </p>
+                                            <br>
+                                            <button type="button" class="btn btn-primary" th:if="${respondido == false}"
+                                                    data-toggle="modal" data-target="#responder">Responder</button> 
+
+                                            <button type="button" class="btn btn-success" th:if="${respondido}"
+                                                    data-toggle="modal" data-target="#modificar">Modificar</button>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                                <div class="col-2 col-md-2"> 
+                                    <a th:href="@{/verEncuesta/} + ${encuesta.id} + '/' + ${idPregunta + 1}" class="btn btn-success" th:if="${activarSiguiente}">Siguiente</a>
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
-                   
-
-
                 </div>
-                <div class="col-2 col-md-2"> 
-                    <a th:href="@{/verEncuesta/} + ${encuesta.id} + '/' + ${idPregunta + 1}" class="btn btn-success" th:if="${activarSiguiente}">Siguiente</a>
-                </div>
-
             </div>
-
-        </div>
-                        </div>
-                </div>
-        </div>
         </main>
 
 
         <!-- MODAL -->
-        
+        <div class="modal fade" id="responder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Responder</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                         <h5 th:text="${pregunta.pregunta}"></h5>
+                        <br>
+                        <form th:action="@{/verEncuesta/} + ${encuesta.id} + '/' + ${pregunta.nro - 1}" th:object="${respuesta}" method="post"> 
+                        <!-- DICOTÓNICAS -->
+                        <div th:if="${pregunta.tipo.id == 1}">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="opcion" id="exampleRadios1"  value="SI" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    SI
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="opcion" id="exampleRadios1"  value="NO" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    NO
+                                </label>
+                            </div>
+                        </div>
+                        <!-- ESCALA -->
+                        <div th:if="${pregunta.tipo.id == 2}">
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="opcion" id="exampleRadios1"  value="MUY BUENO" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    MUY BUENO
+                                </label>
+                            </div>
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="opcion" id="exampleRadios1"  value="BUENO" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    BUENO
+                                </label>
+                            </div>
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="opcion" id="exampleRadios1"  value="REGULAR" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    REGULAR
+                                </label>
+                            </div>
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="opcion" id="exampleRadios1"  value="MALO" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    MALO
+                                </label>
+                            </div>
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="opcion" id="exampleRadios1"  value="MUY MALO" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    MUY MALO
+                                </label>
+                            </div>
+                        </div>
+                        <br>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modificar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modificar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 th:text="${pregunta.pregunta}"></h5>
+                        <br>
+                        <form th:action="@{/verEncuesta/} + ${encuesta.id} + '/' + ${pregunta.nro - 1}" th:object="${respuesta}" method="post">  
+                        <!-- DICOTÓNICAS -->
+                        <div th:if="${pregunta.tipo.id == 1}">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="opcion" id="exampleRadios1"  value="SI" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    SI
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="opcion" id="exampleRadios1"  value="NO" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    NO
+                                </label>
+                            </div>
+                        </div>
+                        <!-- ESCALA -->
+                        <div th:if="${pregunta.tipo.id == 2}">
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="opcion" id="exampleRadios1"  value="MUY BUENO" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    MUY BUENO
+                                </label>
+                            </div>
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="opcion" id="exampleRadios1"  value="BUENO" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    BUENO
+                                </label>
+                            </div>
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="opcion" id="exampleRadios1"  value="REGULAR" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    REGULAR
+                                </label>
+                            </div>
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="opcion" id="exampleRadios1"  value="MALO" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    MALO
+                                </label>
+                            </div>
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="opcion" id="exampleRadios1"  value="MUY MALO" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    MUY MALO
+                                </label>
+                            </div>
+                        </div>
+                        <br>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-        
+
 
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <div th:replace="layout/layout :: footer"></div>
+        <div th:replace="layout/layout :: footer"></div>
     </body>
 </html>

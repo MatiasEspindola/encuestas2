@@ -31,7 +31,6 @@ public class Respuesta implements Serializable {
     @Column(name = "pk_id_res")
     private int id;
 
-    @NotBlank(message = "La respuesta es requerida")
     @Size(max = 110)
     private String respuesta;
     

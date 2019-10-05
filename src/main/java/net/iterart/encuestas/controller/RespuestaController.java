@@ -52,12 +52,17 @@ public class RespuestaController {
     boolean activarAnterior = false;
     boolean activarSiguiente = false;
     boolean respondido = false;
+    
+    Pregunta pregunta;
+    Encuesta encuesta;
+    
+    int id2;
 
     @GetMapping("/verEncuesta/{idEncuesta}/{idPregunta}") // EL 0 ... SE GUARDA EN ID2
     public String crear(@PathVariable(value = "idEncuesta") int id1, @PathVariable(value = "idPregunta") int id2, Map<String, Object> model,
             RedirectAttributes flash, Locale locale, Model m) {
 
-        Encuesta encuesta = encServ.findOne(id1);
+        encuesta = encServ.findOne(id1);
         
         model.put("encuesta", encuesta);
 
@@ -66,8 +71,9 @@ public class RespuestaController {
 
         model.put("titulo", encuesta.getTitulo());
         
+        this.id2 = id2;
 
-        Pregunta pregunta = preguntas.get(id2);
+        pregunta = preguntas.get(id2);
         
 
         // ACTIVAR - DESACTIVAR (Siguiente - Anterior)
@@ -94,13 +100,13 @@ public class RespuestaController {
         
         // VERIFICAR QUE EXISTAN RESPUESTAS EN LAS PREGUNTAS
         if(respServ.findByPregunta(pregunta).isEmpty()){
-            model.put("respuesta", "No se ha respondido esta pregunta");
+            Respuesta respuesta = new Respuesta();
+            model.put("respuesta", respuesta); // <- CREA LA RESPUESTA
             respondido = false;
         }else{
             model.put("respuesta", respServ.findByPregunta(pregunta).get(0).getRespuesta());
             respondido = true;
         }
-        
         
         model.put("respondido", respondido);
         
@@ -110,17 +116,18 @@ public class RespuestaController {
 
 
     // RESPUESTA
-    @RequestMapping(value = "/verEncuesta", method = RequestMethod.POST)
-    public String guardar(@Valid Respuesta respuesta, BindingResult result, Model model, SessionStatus status, RedirectAttributes flash,
-            @RequestParam(defaultValue = "opcion") int id) {
+    @RequestMapping(value = "/verEncuesta/{idEncuesta}/{idPregunta}", method = RequestMethod.POST)
+    public String guardar(@Valid Respuesta respuesta, BindingResult result, Model model, SessionStatus status, RedirectAttributes flash, @RequestParam(value = "opcion", required = false) String opcion) {
 
         // FORMULARIO DE RESPUESTA
+        respuesta.setPregunta(pregunta);
+        respuesta.setRespuesta(opcion);
         respServ.save(respuesta);
         status.setComplete();
 
         flash.addFlashAttribute("success", "Su formulario ha sido enviado con éxito!");
 
-        return "redirect:/encuesta/list";
+        return "redirect:/verEncuesta/" + encuesta.getId() + "/" + (pregunta.getNro() - 1);
     }
 
 }
