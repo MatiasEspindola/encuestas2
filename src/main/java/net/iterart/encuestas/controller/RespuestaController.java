@@ -125,7 +125,7 @@ public class RespuestaController {
         respServ.save(respuesta);
         status.setComplete();
 
-        flash.addFlashAttribute("success", "Su formulario ha sido enviado con éxito!");
+        flash.addFlashAttribute("success", "Su Respuesta ha sido guardada con éxito!");
 
         return "redirect:/verEncuesta/" + encuesta.getId() + "/" + (pregunta.getNro() - 1);
     }

@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html xmlns:th="http://www.thymeleaf.org">
     <head th:replace="layout/layout :: head"></head>
-    <body>
+    <body class="grey lighten-3">
 
         <!--Navbar-->
         <header th:replace="layout/layout :: header"></header>
@@ -25,11 +21,14 @@ and open the template in the editor.
                         </div>
 
                         <div class="md-form">
+                            
 
                             <div class="row">
-                                <div class="col-2 col-md-2"> 
+                                
+                                 <div class="col-2 col-md-2"> 
                                     <a th:href="@{/verEncuesta/} + ${encuesta.id} + '/' + ${idPregunta - 1}" class="btn btn-success" th:if="${activarAnterior}">Anterior</a>
                                 </div>
+                               
 
                                 <div class="col-8 col-md-8">
 
