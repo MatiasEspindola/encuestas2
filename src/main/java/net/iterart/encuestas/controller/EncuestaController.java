@@ -36,7 +36,7 @@ import org.springframework.security.access.annotation.Secured;
 @Controller
 @RequestMapping({"/", "/encuesta"})
 // ENCUESTA SESSIONATTRIBUTES 
-@SessionAttributes("respuesta")
+@SessionAttributes("encuesta")
 public class EncuestaController {
 
     @Autowired

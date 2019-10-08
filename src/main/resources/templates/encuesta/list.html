@@ -55,6 +55,7 @@
 									<td width="40px;">
 										<a th:href="@{/verEncuesta/} + ${e.id} + '/0'" class="btn btn-link btn-sm pl-4" data-toggle="tooltip" th:title="'Preguntas'">Preguntas
 										</a>
+                                                                            <a th:href="@{'crearPregunta/' + ${e.id}}" >Cargar Preguntas</a>
 									</td>
 								</tr>
 							</tbody>
